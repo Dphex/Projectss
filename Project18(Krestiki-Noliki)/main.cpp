@@ -69,7 +69,7 @@ public:
 			std::cout << "[+] Выберите пункт: ";
 			char choose;
 			std::cin >> choose;
-			
+
 			if (choose == '1')
 			{
 				logic();
@@ -82,13 +82,14 @@ public:
 			{
 				break;
 			}
-		
+
 		}
 	}
 
 	void vsBot() {
 		int k = 0;
 		whoWin = 0;
+		X_Skin = 'X';
 		restartGame();
 		map();
 		while (checkWin(k) != true)
@@ -129,7 +130,7 @@ public:
 		std::cout << "Первый, выстроивший в ряд 3 своих фигуры по вертикали, горизонтали или диагонали, выигрывает.\n";
 		std::cout << "Первый ход делает игрок, ставящий крестики.\n";
 
-		gotoxy(0,6);
+		gotoxy(0, 6);
 		system("pause");
 		menu();
 	}
@@ -145,7 +146,8 @@ public:
 			std::cout << "[2] Изменение цвета О\n";
 			std::cout << "[3] Изменение цвета карты\n";
 			std::cout << "[4] Изменение цвета меню\n";
-			std::cout << "[5] Выход в меню\n";
+			std::cout << "[5] Кто ходит первым?\n";
+			std::cout << "[6] Выход в меню\n";
 			std::cout << "[+] Выберите пункт: ";
 			char choose;
 			std::cin >> choose;
@@ -163,7 +165,25 @@ public:
 			case'4':
 				setColorMenu();
 				break;
-			case'5':
+			case'5': {
+				CLEAR;
+				std::cout << "[?]Кто ходит первым ?\n[1] Крестик\t[2]Нолик";
+				char choose;
+				std::cout << "\n[>]";
+				std::cin >> choose;
+				if (choose == '1')
+				{
+					X_Skin = 'X';
+					O_Skin = 'O';
+				}
+				else if (choose == '2')
+				{
+					X_Skin = 'O';
+					O_Skin = 'X';
+				}
+				break;
+			}
+			case'6':
 				menu();
 				break;
 			default:
@@ -1071,7 +1091,7 @@ private:
 
 	};
 	std::string bot[7] = {
-		"########   #######  ########    ##      ## #### ##    ##", 
+		"########   #######  ########    ##      ## #### ##    ##",
 		"##     ## ##     ##    ##       ##  ##  ##  ##  ###   ##",
 		"##     ## ##     ##    ##       ##  ##  ##  ##  ####  ##",
 		"########  ##     ##    ##       ##  ##  ##  ##  ## ## ##",
